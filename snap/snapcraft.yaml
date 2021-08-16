@@ -1,0 +1,37 @@
+name: dnstap-gael
+base: core20
+version: '0.4.0'
+summary: Dnstap - Flexible, structured event replication format for DNS servers
+description: |
+  dnstap implements an encoding format for DNS server events. It uses a
+  lightweight framing on top of event payloads encoded using Protocol Buffers and
+  is transport neutral.
+  dnstap can represent internal state inside a DNS server that is difficult to
+  obtain using techniques based on traditional packet capture or unstructured
+  textual format logging.
+
+grade: stable
+confinement: strict
+
+architectures:
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: amd64
+
+license: "Apache-2.0"
+
+apps:
+  dnstap:
+    command: bin/dnstap
+    plugs:
+    - network-bind
+    - home
+
+parts:
+  app:
+    plugin: go
+    source: https://github.com/dnstap/golang-dnstap.git
+    source-tag: "v0.4.0"
+    source-type: git
+    build-packages:
+      - build-essential
