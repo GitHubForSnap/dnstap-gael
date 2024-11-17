@@ -12,11 +12,11 @@ textual format logging.
 
 `dnstap-gael.dnstap --help`
 
-**Example**
+**Example using Knot Resolver [knot-resolver-gael](https://snapcraft.io/knot-resolver-gael)**
 
-`snap connect dnstap-gael:home :home`
+`sudo snap connect dnstap-gael:home :home`
 
-`snap connect knot-resolver-gael:home :home`
+`sudo snap connect knot-resolver-gael:home :home`
 
 `sudo dnstap-gael.dnstap -q -u /root/dnstap.sock`
 
@@ -26,7 +26,7 @@ textual format logging.
    modules = {
        dnstap = {
            socket_path = "/root/dnstap.sock",
-           identity = nsid.name(),
+           identity = "",
            version = package_version(),
            client = {
                log_queries = true,
@@ -37,6 +37,9 @@ textual format logging.
 ```
 
 `sudo snap restart knot-resolver-gael.kresd`
+
+**2024-11-17**
+* Switched to core24 to follow knot-resolver-gael
 
 **2021-08-16**
 * v0.4.0 available on amd64, arm64 & armhf
